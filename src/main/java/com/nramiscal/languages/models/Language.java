@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -94,6 +96,16 @@ public class Language {
 	public void setUpdated_at(Date updated_at) {
 		this.updated_at = updated_at;
 	}
+	
+    @PrePersist
+    protected void onCreate(){
+        this.created_at = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate(){
+        this.updated_at = new Date();
+    }
     
     
     
